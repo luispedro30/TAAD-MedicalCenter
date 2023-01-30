@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32901.82
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "Integration_Dw_Medical_Center", "Integration_Dw_Medical_Center\Integration_Dw_Medical_Center.dtproj", "{ED0E71F3-6B94-4AC2-8816-2069DBB8F9D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED0E71F3-6B94-4AC2-8816-2069DBB8F9D4}.Development|Default.ActiveCfg = Development
+		{ED0E71F3-6B94-4AC2-8816-2069DBB8F9D4}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FD4CDCDC-9EE8-4155-8408-05D7D59C0A5D}
+	EndGlobalSection
+EndGlobal

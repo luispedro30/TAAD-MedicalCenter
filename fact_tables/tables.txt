@@ -1,0 +1,135 @@
+//// -- LEVEL 1
+//// -- Schemas, Tables and References
+
+// Creating tables
+// You can define the tables with full schema names
+Table medical_center.reception{
+  id int [pk, increment] // auto-increment
+  full_name varchar
+  phone_number varchar
+  ssn varchar
+}
+
+// If schema name is omitted, it will default to "public" schema.
+Table medical_center.doctor  {
+  id int [pk, increment] // auto-increment
+  full_name varchar
+  phone_number varchar
+  ssn varchar
+}
+
+Table medical_center.patient{
+  id int [pk, increment] // auto-increment
+  full_name varchar
+  phone_number varchar
+  email varchar
+  ssn varchar
+  gender varchar
+  free   boolean //se é isento
+  adreess varchar
+  weight float
+  height float
+  doctor_id int [ref: > medical_center.doctor.id]
+  insurance_id int [ref: > medical_center.insurance.company_id]
+  Indexes {
+    (id) [pk]
+  }
+}
+
+Table medical_center.insurance{
+  company_id int [pk, increment] // auto-increment
+  company_name varchar
+  phone_number varchar
+  percentage float
+  Indexes {
+    (company_id) [pk]
+  }
+}
+
+Table medical_center.appointment{
+  appointment_id int [pk, increment] // auto-increment
+  data datetime
+  reception_id int [ref: > medical_center.reception.id]
+  doctor_id int [ref: > medical_center.doctor.id]
+  patient_id int [ref: > medical_center.patient.id]
+  diagnosis_id int [ref: > medical_center.diagnosis.diagnosis_id]
+  prescription_id int [ref: > medical_center.prescription.prescription_id]
+  total_amount int
+  Indexes {
+    (appointment_id) [pk]
+  }
+}
+
+Table medical_center.payment{
+  payment_id int [pk, increment] // auto-increment
+  data datetime
+  reception_id int [ref: > medical_center.reception.id]
+  patient_id int [ref: > medical_center.patient.id]
+  appointment_id int [ref: > medical_center.appointment.appointment_id]
+  amount float
+  Indexes {
+    (payment_id) [pk]
+  }
+}
+
+Table medical_center.diagnosis{
+  diagnosis_id int [pk, increment] // auto-increment
+  category varchar
+  base_price float
+  Indexes {
+    (diagnosis_id) [pk]
+  }
+}
+
+Table medical_center.prescription{
+  prescription_id int [pk, increment] // auto-increment
+  patient_id int [ref: > medical_center.patient.id]
+  prescription_date date
+  description varchar 
+  amount float
+  Indexes {
+    (prescription_id) [pk]
+  }
+}
+
+Table medical_center.medicine{
+  medicine_id int [pk, increment] // auto-increment
+  medicine_name varchar
+  description varchar 
+  price float
+  Indexes {
+    (medicine_id) [pk]
+  }
+}
+
+Table medical_center.prescribe_medicine{
+  prescribe_medicine_id int [pk, increment] // auto-increment
+  medicine_id int [ref: > medical_center.medicine.medicine_id]
+  prescription_id int [ref: > medical_center.prescription.prescription_id]
+  Indexes {
+    (prescribe_medicine_id) [pk]
+  }
+}
+Table medical_center.paycheck_doctor{
+  paycheck_id int [pk, increment] // auto-increment
+  salary float
+  bonus float
+  total_payment float
+  date_payment datetime
+  doctor_id int [ref: > medical_center.doctor.id]
+  Indexes {
+    (paycheck_id) [pk]
+  }
+}
+
+Table medical_center.paycheck_reception{
+  paycheck_id int [pk, increment] // auto-increment
+  salary float
+  bonus float
+  total_payment float
+  date_payment datetime
+  reception_id int [ref: > medical_center.reception.id]
+  Indexes {
+    (paycheck_id) [pk]
+  }
+}
